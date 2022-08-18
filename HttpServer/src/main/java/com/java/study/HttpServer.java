@@ -12,6 +12,13 @@ public class HttpServer {
       System.out.println("서버 시작!");
       // 왜 중첩try 구문?
 
+      // try (ServerSocket ss 선언) {
+      //   ~ ~ }      만약 try구문을 2개로 나뉘게 되면 서버소켓 ss가  {} 블록을 나가면 자동 Close() 되어버려
+      // while(true) {
+      // try(
+      //    Socket socket = ss.accept();    여기서 ss.accept()를 사용할 수 없게 됨! 그래서 중첩으로 사용하게됨
+      //  ~ ~ }
+
       while(true) { //무한 반복
         try(
             // 서버 준비 완료
@@ -21,7 +28,7 @@ public class HttpServer {
             PrintStream out = new PrintStream(socket.getOutputStream()); // 한 줄씩 출력함.
 
             ){
-        System.out.println("클라이언트의 요청이 들오옴.");
+          System.out.println("클라이언트의 요청이 들오옴.");
           System.out.println("------------------------------------------");
 
           String line; // 줄 단위로 읽고, 출력
